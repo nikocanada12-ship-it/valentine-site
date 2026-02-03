@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<title>Валентинка</title>
+<style>
+body{
+  font-family:Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background:#ffeef2
+}
+#box{
+  width:420px;
+  min-height:260px;
+  border:2px dashed pink;
+  position:relative;
+  background:white;
+  border-radius:14px;
+  padding:14px;
+  box-sizing:border-box;
+  text-align:center;
+}
+h2{margin:0 0 10px}
+button{
+  position:absolute;
+  padding:10px 16px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+  cursor:pointer
+}
+#yes{left:90px;top:150px;background:#16a34a;color:white}
+#no{left:230px;top:150px;background:#ef4444;color:white}
+
+#msg{
+  display:none;
+  font-weight:bold;
+  margin-bottom:10px
+}
+
+#gallery{
+  display:none;
+  margin-top:10px
+}
+#gallery img{
+  width:110px;
+  margin:4px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,.2)
+}
+</style>
+</head>
+<body>
+
+<div id="box">
+  <h2>Ще бъдеш ли моята Валентинка? 💘</h2>
+
+  <div id="msg">ЙЕЕЕ! 🥳💞</div>
+
+  <div id="gallery">
+    <img src="image1.jpeg">
+    <img src="image2.jpeg">
+    <img src="image0.jpeg">
+  </div>
+
+  <button id="yes">Да</button>
+  <button id="no">Не</button>
+</div>
+
+<script>
+const box = document.getElementById("box");
+const no = document.getElementById("no");
+const yes = document.getElementById("yes");
+const msg = document.getElementById("msg");
+const gallery = document.getElementById("gallery");
+
+function moveNo(){
+  const x = Math.random() * 300 + 10;
+  const y = Math.random() * 80 + 150;
+  no.style.left = x + "px";
+  no.style.top  = y + "px";
+}
+
+no.addEventListener("mouseenter", moveNo);
+no.addEventListener("click", moveNo);
+
+yes.addEventListener("click", ()=>{
+  msg.style.display="block";
+  gallery.style.display="block";
+  no.style.display="none";
+  yes.style.display="none";
+});
+</script>
+
+</body>
+</html>
