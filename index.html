@@ -1,118 +1,125 @@
 <!doctype html>
 <html lang="bg">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Валентинка</title>
 
 <style>
-  body{
-    margin:0;
-    min-height:100vh;
-    font-family: Arial, sans-serif;
-    background:#ffeef2;
-  }
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial, sans-serif;
+  background:#ffeef2;
+}
 
-  .page{
-    position:relative;
-    min-height:100vh;
-    overflow:hidden;
-  }
+.page{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+}
 
-  /* квадратчето */
-  #box{
-    width:min(520px, 92vw);
-    background:white;
-    border-radius:16px;
-    padding:22px;
-    box-shadow:0 12px 30px rgba(0,0,0,.14);
-    text-align:center;
-    position:relative;
-    z-index:5;
-    margin: 0 auto;
-    top: 40px;
-  }
+/* по-малко квадратче */
+#box{
+  width:360px;
+  max-width:90vw;
+  background:white;
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 10px 22px rgba(0,0,0,.15);
+  text-align:center;
+  position:relative;
+  z-index:5;
+  margin:30px auto 0;
+}
 
-  h2{margin:0 0 10px; font-size:28px}
+h2{margin:6px 0 10px;font-size:22px}
 
-  #stage{
-    position:relative;
-    width:100%;
-    height:200px;
-    margin-top:10px;
-  }
+/* сцената за бутоните */
+#stage{
+  position:relative;
+  width:100%;
+  height:160px;
+}
 
-  button{
-    position:absolute;
-    padding:12px 18px;
-    border-radius:12px;
-    border:none;
-    font-size:18px;
-    font-weight:700;
-    cursor:pointer;
-    user-select:none;
-  }
-  #yes{ left:30%; top:55%; background:#16a34a; color:white; }
-  #no { left:60%; top:55%; background:#ef4444; color:white; }
+button{
+  position:absolute;
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-  /* GIF-овете */
-  .gif{
-    width:180px;
-    max-width:80%;
-    border-radius:12px;
-    margin-bottom:8px;
-  }
+#yes{ left:25%; top:55%; background:#16a34a;color:white;}
+#no { left:60%; top:55%; background:#ef4444;color:white;}
 
-  /* снимките извън квадратчето */
-  #photoField{
-    display:none;
-    position:absolute;
-    inset:0;
-    z-index:1;
-    padding:18px;
-    box-sizing:border-box;
-  }
+/* GIF */
+.gif{
+  width:130px;
+  max-width:80%;
+  border-radius:10px;
+}
 
+/* поле за снимките */
+#photoField{
+  display:none;
+  position:absolute;
+  inset:0;
+  padding:16px;
+  z-index:1;
+  box-sizing:border-box;
+}
+
+/* колаж */
+.mosaic{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:36px;
+  gap:12px;
+  height:100%;
+  padding-top:140px;   /* място за квадратчето */
+  box-sizing:border-box;
+}
+
+/* отделна снимка */
+.tile{
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+  background:#000;
+}
+
+.tile img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* разположение */
+.t1{grid-column:1 / span 6; grid-row:3 / span 6;}
+.t2{grid-column:8 / span 4; grid-row:2 / span 5;}
+.t3{grid-column:3 / span 6; grid-row:10 / span 5;}
+
+@media(max-width:700px){
   .mosaic{
-    display:grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 40px;
-    gap:14px;
-    height:100%;
+    grid-auto-rows:30px;
+    gap:10px;
+    padding-top:200px;   /* повече въздух на телефон */
   }
 
-  .tile{
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,.22);
-    background:#111;
-  }
-
-  .tile img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-
-  /* по-малки размери на снимките */
-  .t1{ grid-column: 1 / span 6;  grid-row: 3 / span 6; }
-  .t2{ grid-column: 8 / span 4;  grid-row: 2 / span 5; }
-  .t3{ grid-column: 3 / span 6;  grid-row: 10 / span 5; }
-
-  @media (max-width:700px){
-    .mosaic{ grid-auto-rows: 34px; gap:10px; padding-top:120px; }
-    .t1{ grid-column: 1 / span 12; grid-row: 4 / span 6; }
-    .t2{ grid-column: 1 / span 6;  grid-row: 11 / span 5; }
-    .t3{ grid-column: 7 / span 6;  grid-row: 11 / span 5; }
-  }
+  .t1{grid-column:1 / span 12; grid-row:4 / span 6;}
+  .t2{grid-column:1 / span 6;  grid-row:11 / span 5;}
+  .t3{grid-column:7 / span 6;  grid-row:11 / span 5;}
+}
 </style>
 </head>
 
 <body>
 <div class="page">
 
-  <!-- снимките след ДА -->
+  <!-- снимките след Да -->
   <div id="photoField">
     <div class="mosaic">
       <div class="tile t1"><img src="image1.jpeg"></div>
@@ -124,7 +131,7 @@
   <!-- квадратчето -->
   <div id="box">
 
-    <!-- GIF преди да натисне ДА -->
+    <!-- GIF преди -->
     <img src="poodle1.gif" id="gifBefore" class="gif">
 
     <h2>Ще бъдеш ли моята Валентинка? 💘</h2>
@@ -134,7 +141,7 @@
       <button id="no">Не</button>
     </div>
 
-    <!-- GIF след като натисне ДА -->
+    <!-- GIF след -->
     <img src="poodle2.gif" id="gifAfter" class="gif" style="display:none">
 
   </div>
@@ -142,39 +149,35 @@
 </div>
 
 <script>
-  const stage = document.getElementById("stage");
-  const noBtn  = document.getElementById("no");
-  const yesBtn = document.getElementById("yes");
+const stage = document.getElementById("stage");
+const noBtn  = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
 
-  const photoField = document.getElementById("photoField");
+const photoField = document.getElementById("photoField");
+const gifBefore = document.getElementById("gifBefore");
+const gifAfter  = document.getElementById("gifAfter");
 
-  const gifBefore = document.getElementById("gifBefore");
-  const gifAfter  = document.getElementById("gifAfter");
+function moveNo(){
+  const r = stage.getBoundingClientRect();
+  const pad = 15;
+  const x = Math.random() * (r.width  - pad*2) + pad;
+  const y = Math.random() * (r.height - pad*2) + pad;
+  noBtn.style.left = x + "px";
+  noBtn.style.top  = y + "px";
+}
 
-  function moveNo(){
-    const r = stage.getBoundingClientRect();
-    const pad = 20;
-    const x = Math.random() * (r.width  - pad*2) + pad;
-    const y = Math.random() * (r.height - pad*2) + pad;
-    noBtn.style.left = x + "px";
-    noBtn.style.top  = y + "px";
-  }
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("click", moveNo);
 
-  noBtn.addEventListener("mouseenter", moveNo);
-  noBtn.addEventListener("click", moveNo);
+yesBtn.addEventListener("click", ()=>{
+  photoField.style.display = "block";
 
-  yesBtn.addEventListener("click", ()=>{
-    // показваме снимките извън квадратчето
-    photoField.style.display = "block";
+  gifBefore.style.display = "none";
+  gifAfter.style.display  = "inline-block";
 
-    // сменяме GIF-овете
-    gifBefore.style.display = "none";
-    gifAfter.style.display  = "inline-block";
-
-    // махаме бутоните
-    yesBtn.style.display = "none";
-    noBtn.style.display  = "none";
-  });
+  yesBtn.style.display = "none";
+  noBtn.style.display  = "none";
+});
 </script>
 
 </body>
